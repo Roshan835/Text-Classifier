@@ -28,9 +28,9 @@ s = pickle.loads(saved_model)
 
 st.header('Text Classifier')
 input = st.text_area("Please enter the text", value="")
-
+vec = vector.transform([input]).toarray()
 if st.button("Predict"):
-    vec = vector.transform([input]).toarray()
+    
     st.write(str(list(naivebayes.predict(vec))[0]).replace('0', 'TECH').replace('1', 'BUSINESS').replace('2', 'SPORTS').replace('3','ENTERTAINMENT').replace('4','POLITICS'))
 
 
