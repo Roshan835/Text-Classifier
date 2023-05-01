@@ -13,7 +13,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 vector = CountVectorizer(stop_words = "english", lowercase = False)
 #fit the vectorizer on the training data
 vector.fit(X_train)
-vector.vocabulary_
 X_transformed = vector.transform(X_train)
 X_transformed.toarray()
 # for text data
@@ -29,8 +28,9 @@ s = pickle.loads(saved_model)
 
 st.header('Text Classifier')
 input = st.text_area("Please enter the text", value="")
-vec = vector.transform([input]).toarray()
+
 if st.button("Predict"):
+    vec = vector.transform([input]).toarray()
     st.write(str(list(naivebayes.predict(vec))[0]).replace('0', 'TECH').replace('1', 'BUSINESS').replace('2', 'SPORTS').replace('3','ENTERTAINMENT').replace('4','POLITICS'))
 
 
