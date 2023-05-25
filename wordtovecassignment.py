@@ -4,8 +4,7 @@ import pickle
 import gensim
 from gensim.models import word2vec
 from gensim.models.word2vec import Word2Vec
-import spacy
-import string
+
 bbc_text = pd.read_csv("bbc-text.txt")
 bbc_text = bbc_text.rename(columns = {"text":"News_Headline"}, inplace = False)
 bbc_text.category = bbc_text.category.map({"tech":0,"business":1,"sport":2,"entertainment":3,"politics":4})
