@@ -12,7 +12,7 @@ X = bbc_text.News_Headline
 y = bbc_text.category
 #split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = 0.6, random_state = 1)
-vector = word2vec(bbc_text, min_count = 1)
+vector = word2vec(bbc_text)
 #fit the vectorizer on the training data
 vector.fit(X_train)
 X_transformed = vector.transform(X_train)
