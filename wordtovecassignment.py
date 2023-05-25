@@ -1,9 +1,11 @@
 import pandas as pd
 import streamlit as st
 import pickle
-import nltk
+import gensim
 from gensim.models import word2vec
-from nltk.corpus import stopwords
+from gensim.models.word2vec import Word2Vec
+import spacy
+import string
 bbc_text = pd.read_csv("bbc-text.txt")
 bbc_text = bbc_text.rename(columns = {"text":"News_Headline"}, inplace = False)
 bbc_text.category = bbc_text.category.map({"tech":0,"business":1,"sport":2,"entertainment":3,"politics":4})
@@ -12,7 +14,7 @@ X = bbc_text.News_Headline
 y = bbc_text.category
 #split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = 0.6, random_state = 1)
-vector = word2vec(bbc_text, min_count = 1)
+vector = Word2Vec(bbc_text,min_count=1)
 #fit the vectorizer on the training data
 vector.fit(X_train)
 X_transformed = vector.transform(X_train)
